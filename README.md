@@ -9,5 +9,3 @@ Se han implementado pruebas unitarias utilizando JUnit para validar el correcto 
 - **testEliminarDuplicados**: Verifica que el método `eliminarDuplicados` funcione correctamente.
 - **testInvertirLista**: Asegura que el método `invertirLista` invierta correctamente los elementos de la lista.
 - **testIntercalarListas**: Comprueba el método `intercalarListas`. Este test está diseñado para fallar intencionadamente para demostrar la funcionalidad de las pruebas.
-## Ejecución de Pruebas|
-Para ejecutar las pruebas, asegúrate de tener JUnit configurado en tu entorno de desarrollo. Puedes ejecutar las pruebas desde tu IDE o mediante la línea de comandos utilizando Maven o Gradle, dependiendo de la configuración de tu proyecto.
