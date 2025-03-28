@@ -1,20 +1,25 @@
 package umg.edu.progra.listas;
+
 /**
  *
  * @author Walter Cordova
  */
 public class Lista {
+
     private Nodo primero;
+
     @Override
     public String toString() {
         return "=>" + primero;
     }
+
     /**
      * Constructor para inicializar una lista
      */
     public Lista() {
         primero = null;
     }
+
     /**
      * Devuelve el nodo inicial
      *
@@ -23,6 +28,7 @@ public class Lista {
     public Nodo leerPrimero() {
         return primero;
     }
+
     /**
      * Inserta valores a la lista
      *
@@ -33,7 +39,9 @@ public class Lista {
         nuevo = new Nodo(entrada);
         nuevo.enlace = primero;
         primero = nuevo;
+
     }
+
     /**
      * inserta un elemento a partir de anterior
      *
@@ -45,7 +53,9 @@ public class Lista {
         nuevo = new Nodo(entrada);
         nuevo.enlace = anterior.enlace;
         anterior.enlace = nuevo;
+
     }
+
     /**
      * elimina el elemento entrada
      *
@@ -65,7 +75,8 @@ public class Lista {
             }
         }
         if (actual != null) {
-
+            // Se distingue entre que el nodo sea el cabecera
+            // o del resto de la lista
             if (actual == primero) {
                 primero = actual.enlace;
             } else {
@@ -74,6 +85,7 @@ public class Lista {
             actual = null;
         }
     }
+
     /**
      * busca el elemento destino
      *
@@ -89,6 +101,7 @@ public class Lista {
         }
         return null;
     }
+
     /**
      * recorre la lista y muestra cada dato
      */
@@ -99,68 +112,81 @@ public class Lista {
             System.out.print(n.dato + " ");
             n = n.enlace;
         }
-        System.out.println();
     }
+    
     /**
      * 1 - Método para invertir la lista enlazada
      */
     public void invertirLista() {
-        Nodo actual = primero;
-        Nodo anterior = null;
-        Nodo siguiente = null;
-        while (actual != null) {
-            siguiente = actual.enlace;
-            actual.enlace = anterior;
-            anterior = actual; 
-            actual = siguiente; 
+        Nodo prev = null;
+        Nodo current = primero;
+        Nodo next;
+        while (current != null) {
+            next = current.enlace;
+            current.enlace = prev;
+            prev = current;
+            current = next;
         }
-        primero = anterior; 
+        primero = prev;
     }
+
     /**
      * 2 - Método para obtener el elemento en la posición n desde el final
      */
-    public Integer obtenerDesdeElFinal(int n) {
-        Nodo actual = primero;
-        Nodo puntero = primero;
+    public int obtenerDesdeFinal(int n) {
+        Nodo principal = primero;
+        Nodo referencia = primero;
+        int count = 0;
 
-        for (int i = 0; i < n; i++) {
-            if (puntero == null) return null; 
-            puntero = puntero.enlace;
+        while (count < n) {
+            if (referencia == null) return -1; 
+            referencia = referencia.enlace;
+            count++;
         }
 
-        while (puntero != null) {
-            actual = actual.enlace;
-            puntero = puntero.enlace;
+        while (referencia != null) {
+            principal = principal.enlace;
+            referencia = referencia.enlace;
         }
-        return actual != null ? actual.dato : null;
+
+        return principal.dato;
     }
+
     /**
      * 3 - Método para eliminar duplicados en una lista enlazada
      */
     public void eliminarDuplicados() {
         Nodo actual = primero;
-        while (actual != null) {
-            Nodo siguiente = actual;
-            while (siguiente.enlace != null) {
-                if (siguiente.enlace.dato == actual.dato) {
-                    siguiente.enlace = siguiente.enlace.enlace; 
+
+        while (actual != null && actual.enlace != null) {
+            Nodo comparador = actual;
+
+            while (comparador.enlace != null) {
+                if (actual.dato == comparador.enlace.dato) {
+                    comparador.enlace = comparador.enlace.enlace; 
                 } else {
-                    siguiente = siguiente.enlace;
+                    comparador = comparador.enlace;
                 }
             }
             actual = actual.enlace;
         }
     }
+
+
     /**
      * 4 - Método para obtener el tamaño de la lista enlazada
      */
-    public int obtenerTamano() {
-        int tamano = 0;
-        Nodo actual = primero;
-        while (actual != null) {
-            tamano++;
-            actual = actual.enlace;
+    public int obtenerTamanio() {
+        int count = 0;
+        Nodo temp = primero;
+        while (temp != null) {
+            count++;
+            temp = temp.enlace;
         }
-        return tamano;
+        return count;
     }
+    
+    
+   
+    
 }

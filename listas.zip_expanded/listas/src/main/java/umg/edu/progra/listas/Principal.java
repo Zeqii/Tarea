@@ -1,10 +1,15 @@
 package umg.edu.progra.listas;
+import umg.edu.progra.listas.doblementeEnlazada.DoblementeEnlazada;
 /**
  *
  * @author Walter Cordova
  */
 public class Principal {
     public static void main(String[] args) {
+        listaEnlazadaSimple();
+        listaenlazadaDoble();       
+    }
+    public static void listaEnlazadaSimple() {
         Lista lista = new Lista();
         lista.insertarCabezaLista(1);
         lista.insertarCabezaLista(2);
@@ -27,89 +32,40 @@ public class Principal {
         lista.insertarLista(dato, 600);
         System.out.println("lista " + lista);
         lista.visualizar();
+        /**
+         * Ejercicio 1: Ordenar la lista de forma ascendente
+         * Ejercicio 2: Unir dos listas enlazadas
+         * Ejercicio 3: Separar números pares e impares en dos listas enlazadas diferentes
+         */
+    }
+    public static void listaenlazadaDoble() {
+        DoblementeEnlazada dll = new DoblementeEnlazada();
+        dll.insertAtEnd(10);
+        dll.insertAtEnd(20);
+        dll.insertAtEnd(30);
+        dll.insertAtBeginning(5);
         
-        // Ejercicio 1: Ordenar la lista de forma ascendente
-        lista = ordenarLista(lista);
-        System.out.println("Lista ordenada: ");
-        lista.visualizar();
-        // Ejercicio 2: Unir dos listas enlazadas
-        Lista lista2 = new Lista();
-        lista2.insertarCabezaLista(7);
-        lista2.insertarCabezaLista(8);
-        lista2.insertarCabezaLista(9);
-        Lista listaUnida = unirListas(lista, lista2);
-        System.out.println("Lista unida: ");
-        listaUnida.visualizar();
-        // Ejercicio 3: Separar números pares e impares en dos listas diferentes
-        Lista pares = new Lista();
-        Lista impares = new Lista();
-        separarParesImpares(lista, pares, impares);
-        System.out.println("Lista de pares: ");
-        pares.visualizar();
-        System.out.println("Lista de impares: ");
-        impares.visualizar();
-    }
-    /**
-     * Método para ordenar la lista de forma ascendente
-     */
-    public static Lista ordenarLista(Lista lista) {
-        if (lista.leerPrimero() == null) return lista; // Si la lista está vacía
-        Nodo actual;
-        Nodo siguiente;
-        boolean intercambiado;
-        do {
-            actual = lista.leerPrimero();
-            intercambiado = false;
-            while (actual != null && actual.enlace != null) {
-                siguiente = actual.enlace;
-                if (actual.dato > siguiente.dato) {
-                    // Intercambiar los datos
-                    int temp = actual.dato;
-                    actual.dato = siguiente.dato;
-                    siguiente.dato = temp;
-                    intercambiado = true;
-                }
-                actual = siguiente;
-            }
-        } while (intercambiado);
-        return lista;
-    }
-    /**
-     * Método para unir dos listas enlazadas
-     */
-    public static Lista unirListas(Lista lista1, Lista lista2) {
-        Lista listaUnida = new Lista();
-        Nodo actual = lista1.leerPrimero();
-        // Copiar elementos de lista1
-        while (actual != null) {
-            listaUnida.insertarCabezaLista(actual.dato);
-            actual = actual.enlace;
-        }
-        actual = lista2.leerPrimero();
-        // Copiar elementos de lista2
-        while (actual != null) {
-            listaUnida.insertarCabezaLista(actual.dato);
-            actual = actual.enlace;
-        }
-        // Invertir la lista unida para mantener el orden
-        listaUnida.invertirLista();
-        return listaUnida;
-    }
-    /**
-     * Método para separar números pares e impares en dos listas diferentes
-     */
-    public static void separarParesImpares(Lista lista, Lista pares, Lista impares) {
-        Nodo actual = lista.leerPrimero();
-        while (actual != null) {
-            if (actual.dato % 2 == 0) {
-                pares.insertarCabezaLista(actual.dato); // Inserta en la lista de pares
-            } else {
-                impares.insertarCabezaLista(actual.dato); // Inserta en la lista de impares
-            }
-            actual = actual.enlace;
-        }
-        // Invertir las listas para mantener el orden original
-        pares.invertirLista();
-        impares.invertirLista();
+        System.out.println("Lista en orden:");
+        dll.displayForward();
+        
+        System.out.println("Lista en orden inverso:");
+        dll.displayBackward();
+        
+        System.out.println("Eliminando 20: " + dll.delete(20));
+        dll.displayForward();
+        
+        System.out.println("Buscando 10: " + dll.search(10));
+        System.out.println("Buscando 50: " + dll.search(50));
+        
+        // Contar nodos
+        System.out.println("Número de nodos en la lista: " + dll.countNodes());
+        // Insertar después de un valor específico
+        dll.insertAfter(10, 15);
+        System.out.println("Después de insertar 15 después de 10:");
+        dll.displayForward();
+        // Revertir la lista
+        dll.reverse();
+        System.out.println("Lista revertida:");
+        dll.displayForward();
     }
 }
