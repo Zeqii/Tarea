@@ -5,7 +5,6 @@
 package umg.edu.gt.desarrollo.estructuradedatos2025.clases;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -19,6 +18,7 @@ public class ClaseVectores {
      * Ejemplo 1: ArrayList y LinkedList
      */
     public void ejemploListas() {
+
         // ArrayList - Lista dinámica
         ArrayList<Integer> lista = new ArrayList<>();
         lista.add(10);
@@ -26,6 +26,9 @@ public class ClaseVectores {
         lista.add(30);
         lista.add(10);
         lista.add(50);
+        lista.add(100);
+        lista.add(3, 60);
+
         
         System.out.println("ArrayList: " + lista);
         
@@ -42,8 +45,8 @@ public class ClaseVectores {
         nombres.add("Ana");
         nombres.add("Juan");
         nombres.add("Pedro");
-        
-        nombres.remove();
+        nombres.addFirst("--");
+        nombres.addLast("---");
         
         System.out.println("LinkedList: " + nombres);
     }

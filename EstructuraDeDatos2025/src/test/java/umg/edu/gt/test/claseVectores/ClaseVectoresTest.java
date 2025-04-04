@@ -17,6 +17,8 @@ import umg.edu.gt.desarrollo.estructuradedatos2025.clases.ClaseVectores;
  * @author wcord
  */
 public class ClaseVectoresTest {
+	
+	
     @Test
     void testBuscarNumero() {
     	

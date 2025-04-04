@@ -13,13 +13,13 @@ import java.util.Arrays;
 public class EjercicioVectores {
     
     public int[] tribonacci(int[] signature, int n) {
-        if (n == 0) {
+        if (n == 0) 
             return new int[0];
-        }
         
-        if (n <= 3) {
+        
+        if (n <= 3) 
             return Arrays.copyOf(signature, n);
-        }
+        
         
         int[] result = new int[n];
         System.arraycopy(signature, 0, result, 0, 3);
